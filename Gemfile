@@ -10,6 +10,7 @@ gem 'turbolinks'					# Turbolinks makes following links in your web application 
 gem 'jbuilder', 		'2.0.0'		# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'bootstrap-sass',	'2.3.2.0'
 gem 'sprockets',		'2.11.0'
+gem 'bcrypt-ruby',		'3.1.2'		# Includes password-encrypting function bcrypt
 
 
 group :development, :test do
