@@ -29,6 +29,19 @@ $white: 			#ffffff;
 	}
 }
 
+.users {
+	list-style: none;
+	margin: 0px;
+	li {
+		overflow: auto;
+		padding: 10px 0px;
+		border-top: 1px solid $grayLighter;
+		&:last-child {
+			border-bottom: 1px solid $grayLighter;
+		}
+	}
+}
+
 /* ID STYLES */
 
 #logo {

@@ -1,20 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails',			'4.1.1'		# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'sqlite3'						# Use SQLite as the database for Active Record
-gem 'sass-rails',		'4.0.3'		# Use SCSS for stylesheets
-gem 'uglifier',			'1.3.0'		# Use Uglifier as compressor for JavaScript assets
-gem 'coffee-rails',		'4.0.1'		# Use CoffeeScript for .js.coffee assets and views
-gem 'jquery-rails'					# Use jquery as the JavaScript library
-gem 'turbolinks'					# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'jbuilder', 		'2.0.0'		# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'bootstrap-sass',	'2.3.2.0'
-gem 'sprockets',		'2.11.0'
-gem 'bcrypt-ruby',		'3.1.2'		# Includes password-encrypting function bcrypt
+gem 'rails',					'4.1.1'		# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'sqlite3'								# Use SQLite as the database for Active Record
+gem 'sass-rails',				'4.0.3'		# Use SCSS for stylesheets
+gem 'uglifier',					'1.3.0'		# Use Uglifier as compressor for JavaScript assets
+gem 'coffee-rails',				'4.0.1'		# Use CoffeeScript for .js.coffee assets and views
+gem 'jquery-rails'							# Use jquery as the JavaScript library
+gem 'turbolinks'							# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'jbuilder', 				'2.0.0'		# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'bootstrap-sass',			'2.3.2.0'
+gem 'sprockets',				'2.11.0'
+gem 'bcrypt-ruby',				'3.1.2'		# Includes password-encrypting function bcrypt
+gem 'faker',					'1.1.2'		# Fakes semi-realistic names for test users
+gem 'will_paginate',			'3.0.4'		# Allows long lists to be split up over different pages
+gem 'bootstrap-will_paginate',	'0.0.9'
 
 
 group :development, :test do
-	gem 'rspec-rails',	'2.13.1'
+	gem 'rspec-rails',	'~> 2.14.0.rc1'
 end
 
 group :test do
