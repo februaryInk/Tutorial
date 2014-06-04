@@ -13,6 +13,8 @@ describe User do
 	it { should respond_to( :remember_token ) }
 	it { should respond_to( :authenticate ) }
 	it { should respond_to( :admin ) }
+	it { should respond_to( :microposts ) }
+	it { should respond_to( :feed ) }
 	
 	it { should be_valid }
 	it { should_not be_admin(  ) } # be_admin is defined...magically? Because admin?(  ) is defined automatically on account of the :admin attribute being boolean.
@@ -115,5 +117,34 @@ describe User do
 	describe "remember token" do
 		before { @user.save(  ) }
 		its( :remember_token ) { should_not be_blank } # it { expect( @user.remember_token ).not_to(  ) be_blank(  ) }
+	end
+	
+	describe "micropost associations" do
+		before do
+			@user.save
+		end
+		let!( :older_micropost ) { FactoryGirl.create( :micropost, { :user => @user, :created_at => 1.day.ago } ) }
+		let!( :newer_micropost ) { FactoryGirl.create( :micropost, { :user => @user, :created_at => 1.hour.ago } ) }
+		
+		it "should have the microposts in the correct order" do
+			expect( @user.microposts.to_a ).to eq [ newer_micropost, older_micropost ]
+		end
+		
+		it "should destroy associated microposts when a user is deleted" do
+			microposts = @user.microposts.to_a
+			@user.destroy
+			expect( microposts ).not_to be_empty
+			microposts.each do | micropost |
+				expect( Micropost.where( { :id => micropost.id } ) ).to be_empty
+			end
+		end
+		
+		describe "status" do
+			let( :unfollowed_post ) { FactoryGirl.create( :micropost, { :user => FactoryGirl.create( :user ) } ) }
+			
+			its( :feed ) { should include( newer_micropost ) }
+			its( :feed ) { should include( older_micropost ) }
+			its( :feed ) { should_not include( unfollowed_post ) }
+		end
 	end
 end

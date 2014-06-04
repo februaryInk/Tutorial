@@ -9,5 +9,11 @@ namespace( :db ) do
 			password_confirmation = "password"
 			User.create!( { :name => name, :email => email, :password => password, :password_confirmation => password_confirmation } )
 		end
+		
+		users = User.all(  )
+		50.times do
+			content = Faker::Lorem.sentence( 5 )
+			users.each { | user | user.microposts.create!( { :content => content } ) }
+		end
 	end
 end

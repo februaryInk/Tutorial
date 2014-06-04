@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   
 	def show(  ) # SHOW
 		@user = User.find( params[ :id ] )
+		@microposts = @user.microposts.paginate( { :page => params[ :page ] } )
 	end
 	
 	def edit(  ) # SHOW
@@ -53,13 +54,7 @@ class UsersController < ApplicationController
 		
 		# Before filters
 		
-		def signed_in_user(  )
-			unless signed_in?(  )
-				flash[ :notice ] = "Please sign in"
-				store_location(  )
-				redirect_to( signin_url ) # Or: redirect_to( signin_url, { :notice => "Please sign in." } )
-			end
-		end
+		# signed_in_user in sessions helper
 		
 		def not_signed_in_user(  )
 			if signed_in?(  )
